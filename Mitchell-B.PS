@@ -1,0 +1,3255 @@
+%!PS-Adobe-3.0  
+%%Title: Duplicate Bridge Movement Table Mats Copyright (c) 2013 
+%%Creator: BridgeMats Copyright (c) 2013 Peter D. Matthews, Jr.  
+%%CreationDate: 20-SEP-2013 23:39  
+%%For: ACBLscore Director  
+%%BoundingBox: 0 0 400 796
+%%Pages: 26  
+%%DocumentNeededResources: font Helvetica Helvetica-Bold Courier-Bold
+%%DocumentData: Clean7Bit
+%%Orientation: Portrait
+%%EndComments
+
+%%BeginDefaults
+%%PageResources: font Helvetica Helvetica-Bold Courier-Bold
+%%EndDefaults
+
+%%BeginSetup
+%%IncludeResource: font Helvetica
+%%IncludeResource: font Helvetica-Bold
+%%IncludeResource: font Courier-Bold
+
+% The mats will be twice as tall as wide.
+% The default FACT is for US Letter paper.
+% Use FACT=1.27 for US Legal.
+% Use FACT=1.15 for US Legal and old ACBL sleeves.
+% Use FACT=1.11 for US Legal and Baron/Barclay sleeves.
+% Use XEDGE=572 and FACT=1.0 for 8.5" wide (US letter)
+% This Mitchell mat was created by manually editing, not by the program.
+% 
+% CHANGE THESE VARIABLES FOR SECTION, BRIDGE CLUB or two more titles:
+/SECTION (B) def
+/CLUB (BONNIE J. ROSEN) def
+/Title1 (Email: bjrboca@aol.com) def
+/Title2 (Tel: 561-212-2576) def
+
+
+%cut1here ----- Begin Variable Data for All Mats -----
+/VERSION (2018.10.11) def
+/FACT       1.0000 def     % -- uniform scale factor
+/XWIDE      8.0 def        % -- print area width in inches
+/TITLE (BridgeMats Standard Movement Table Mat) def   % -- file name or other title
+/PAIRS CLUB def      % -- number of pairs playing
+/ROUNDS     12 def         % -- number of rounds
+/DESC [ 
+ ("Down with boards, up with people!") 
+ ( )
+ ( Certified ACBL Bridge Instructor )
+ ( Certified ACBL Bridge Director )
+ ( Certified Audrey Grant Instructor )
+ ( )
+ ( )
+ ( )
+ ( )
+ ( )
+ ] def
+%ereh1tuc ----- End Variable Data for All Mats -----
+
+/Black  {0.0000 0.00 0.00 sethsbcolor} bind def
+/Red    {0.0000 1.00 0.70 sethsbcolor} bind def
+/Olive  {0.1667 1.00 0.40 sethsbcolor} bind def
+/Green  {0.3333 1.00 0.50 sethsbcolor} bind def
+/Teal   {0.5000 1.00 0.70 sethsbcolor} bind def
+/Blue   {0.6667 1.00 0.80 sethsbcolor} bind def
+/Purple {0.8000 1.00 0.50 sethsbcolor} bind def
+
+/Orange {0    0.61 0.87 0.15 setcmykcolor} bind def
+/Brown  {0    0.81 1    0.60 setcmykcolor} bind def
+
+/HG 216 def
+/XL  54 def
+/BG  36 def
+/LG  24 def
+/MD  18 def
+/SM  13 def
+/XS  10 def
+/XX   7 def
+/FontSec   /Helvetica      findfont HG scalefont def
+/FontXLB   /Helvetica-Bold findfont XL scalefont def
+/FontBGB   /Helvetica-Bold findfont BG scalefont def
+/FontLGB   /Helvetica-Bold findfont LG scalefont def
+/FontMD    /Helvetica-Bold findfont MD scalefont def
+/FontMDB   /Helvetica-Bold findfont MD scalefont def
+/FontSM    /Helvetica      findfont SM scalefont def
+/FontSMB   /Helvetica-Bold findfont SM scalefont def
+/FontXS    /Helvetica      findfont XS scalefont def
+/FontXSB   /Helvetica-Bold findfont XS scalefont def
+/FontXX    /Helvetica      findfont XX scalefont def
+/FontXST   /Courier-Bold        findfont  9 scalefont def
+
+/Indent1     22 def        % -- first indent from edgea CHANGED FOR MITCHELL
+/XtableN     22 def        % -- indent for table number
+
+/XEDGE XWIDE 72 mul def    % -- print area width in pels
+/XCUT XEDGE 38 add def     % -- vertical cut line (X)
+/XCTR XEDGE 2 div def      % -- center of mat in X direction
+/YEDGE      756 def
+/YCTR YEDGE 2 div 84 add def % "center" of mat in Y direction
+/Ydesc YCTR 200 add def    % -- start of description block
+/Ytitle YCTR 58 add def    % -- start of title block
+
+/Xarrow      Indent1 def
+/YarrowTail  YCTR 72 sub def
+/YarrowHead  Indent1 XL add SM 1 mul add 2 mul def
+/YarrowHt YarrowTail YarrowHead sub def
+/XboxWide   270 def        % -- width of movement box
+/YboxInc    1.2 def        % -- line increment for box
+/YboxHt ROUNDS 1 add YboxInc XS mul mul def
+/YboxHt 216 def
+/YarrowCtr YarrowTail YarrowHt 2 div sub def
+/Ybox YarrowCtr YboxHt 2 div add def % -- start of box   
+/TailShorten 0 def        % -- shorten arrow for directions
+
+/Xcenter {  % center stack string in X direction
+  dup stringwidth pop  % get x width
+  2 div neg            % move over by half
+  0 rmoveto
+  show
+  } bind def
+
+% -- begin arrow code from cookbook (code not claimed by PDM)
+
+/arrowdict 14 dict def
+arrowdict begin
+  /mtrx matrix def
+  end
+
+/arrow {
+  % 1= x coord tail center
+  % 2= y coord tail center
+  % 3= x coord of tip
+  % 4= y coord of tip
+  % 5= thickness of tail
+  % 6= thickness of head
+  % 7= length of head
+  arrowdict begin
+    /headlength exch def
+    /halfheadthickness exch 2 div def
+    /halfthickness exch 2 div def
+    /tipy exch def /tipx exch def
+    /taily exch def /tailx exch def
+
+    /dx tipx tailx sub def
+    /dy tipy taily sub def
+    /arrowlength dx dx mul dy dy mul add sqrt def
+    /angle dy dx atan def
+    /base arrowlength headlength sub def
+
+    /savematrix mtrx currentmatrix def
+
+    tailx taily translate
+    angle rotate
+
+    0 halfthickness neg moveto
+    base halfthickness neg lineto
+    base halfheadthickness neg lineto
+    arrowlength 0 lineto
+    base halfheadthickness lineto
+    base halfthickness lineto
+    0 halfthickness lineto
+    closepath
+    
+    savematrix setmatrix
+    end
+  } bind def
+
+% -- end arrow code from cookbook (code not claimed by PDM)
+
+/DrawCutLine {
+  gsave
+  .1 setlinewidth
+  [10] 0 setdash
+  XCUT 18 sub -14 moveto
+  0 794 rlineto
+  stroke
+  -12 796 18 sub moveto
+  XEDGE 36 add 0 rlineto
+  stroke
+  [] 0 setdash
+  grestore
+  } bind def
+
+/DoDesc {  % stack: TITLE DESC
+  /D exch def
+  /y Ydesc def
+    XCTR y moveto
+    FontXSB setfont
+    TITLE Xcenter
+  /y y SM sub def
+  FontXST setfont
+  /n 0 def
+  /x D 0 get
+     stringwidth pop 2 div 
+     neg XCTR add def   % move left
+  0 1 9 {  % loop through descriptions
+    /y y XS sub def
+    x y moveto
+    D n get show 
+    /n n 1 add def
+    } for
+  } def
+
+/DoVersion { % stack: VERSION
+  /y Ytitle def
+    XCTR y moveto
+    FontXX setfont
+    Xcenter  % VERSION
+  } def
+
+/DoTitle {  % stack: PAIRS Title2 Title1
+  /y y LG 1.5 mul sub def
+    XCTR y moveto
+    FontSM setfont
+    Xcenter
+  /y y MD sub def
+    XCTR y moveto
+    Xcenter
+  /y y BG 1.5 mul sub def
+    XCTR y moveto
+    FontBGB setfont
+    Xcenter
+  } def
+
+/DoTableNumber {  % stack: N
+  /N exch def
+  currentpoint
+  currentpoint
+  currentpoint
+  FontXLB setfont
+  N stringwidth pop
+  /z exch 70 gt def
+  z { .5 1 scale } if
+  N Xcenter
+  z { 2 1 scale } if
+  % now use the current point saved above
+  XL add moveto
+  FontSMB setfont
+  (TABLE) Xcenter
+  % add the section
+  % now use the current point saved above
+  /locy SM 2.5 mul XL add def
+  locy add moveto
+  FontXLB setfont
+  SECTION stringwidth pop
+  /z exch 70 gt def
+  z { .5 1 scale } if
+  SECTION Xcenter
+  z { 2 1 scale } if
+  % now use the current point saved above
+  /locy locy XL add def
+  locy add moveto
+  FontSMB setfont
+  (SECTION) Xcenter
+  } def
+
+/NORTH { % stack: NextNorth
+  FontBGB setfont
+  XCTR SM 1 mul moveto % CHANGED for MITCHELL
+  (NORTH) Xcenter
+  FontXSB setfont
+  XCTR 0 Line1AdjNS sub moveto
+  Xcenter  % NextNorth
+  XCTR 0 Line2Adj sub moveto
+  Line2N Xcenter
+  } def
+
+/SOUTH { % stack: NextSouth
+  FontBGB setfont
+  XCTR YEDGE SM 1 mul sub moveto % CHANGED for MITCHELL
+  180 rotate
+  (SOUTH) Xcenter
+  -180 rotate
+  FontXSB setfont
+  XCTR YEDGE Line1AdjNS add moveto
+  180 rotate
+  Xcenter  % NextSouth
+  -180 rotate
+  XCTR YEDGE Line2Adj add moveto
+  180 rotate
+  Line2S Xcenter
+  -180 rotate
+  } def
+
+/EAST { % stack: NextEast
+  FontBGB setfont
+  Indent1 SM -.6 mul add YCTR moveto  % CHANGED FOR MITCHELL
+  270 rotate
+  (EAST) Xcenter
+  -270 rotate
+  FontXSB setfont
+  Indent1 Line1AdjEW sub YCTR moveto
+  270 rotate
+  Xcenter  % NextEast
+  -270 rotate
+  Indent1 Line2Adj sub YCTR moveto
+  270 rotate
+  Line2E Xcenter
+  -270 rotate
+  } def
+
+/WEST { % stack: NextWest
+  FontBGB setfont
+  XEDGE Indent1 SM -.6 mul add sub YCTR moveto  % CHANGED FOR MITCHELL
+  90 rotate
+  (WEST) Xcenter
+  -90 rotate
+  FontXSB setfont
+  XEDGE Indent1 sub Line1AdjEW add YCTR moveto
+  90 rotate
+  Xcenter  % NextWest
+  -90 rotate
+  XEDGE Indent1 sub Line2Adj add YCTR moveto
+  90 rotate
+  Line2W Xcenter
+  -90 rotate
+  } def
+
+/StartBox {  % establishes x and y
+  .5 setlinewidth
+  /x XCTR XboxWide 2 div sub def
+  /y Ybox def
+  x y moveto
+  x XboxWide add y lineto
+  stroke
+  XCTR y HG sub 24 sub moveto  %changed...
+  (Check boards, opponents and positions every round.) Xcenter  % CHANGED...
+  } def
+
+/FinishBox {   % driven by x, y and SECTION
+  x y moveto
+  x y HG sub lineto
+  x XboxWide add y HG sub lineto
+  x XboxWide add y lineto
+  stroke
+  /y y HG sub def
+  XCTR y 30 add moveto
+  /currfont currentfont def
+  FontSec setfont
+  SECTION Xcenter
+  FontMD setfont
+% /y y HG YboxInc 1 sub mul sub def  
+% /y y HG 2 mul YboxInc 1 sub mul sub def  
+  /y y HG 2 div sub def
+% /y y SM 17 mul sub def   % CHANGED for MITCHELL
+  XCTR y moveto
+  (MOVE BOARDS TO NEXT LOWER TABLE) Xcenter % CHANGED for MITCHELL
+  } def
+
+/PairsBoxLine {  % driven by x, y and n
+                 % stack: NT BD EW NS RD
+  /d XS YboxInc mul def
+  x y moveto
+  x y d sub lineto
+  x XboxWide add y d sub lineto
+  x XboxWide add y lineto
+  stroke
+  /y y XS sub def
+  x 10 add y moveto
+    show  % RD
+  x 68 add y moveto
+    Xcenter  % NS
+  x 126 add y moveto
+    Xcenter  % EW
+  x 184 add y moveto
+    Xcenter  % BD
+  x 242 add y moveto
+    Xcenter  % NT
+  /y y XS YboxInc 1 sub mul sub def  
+  } bind def
+
+/IndBoxLine {  % driven by x, y and n
+               % stack: NT BD WW SS EE NN RD
+  /d XS YboxInc mul def
+  x y moveto
+  x y d sub lineto
+  x XboxWide add y d sub lineto
+  x XboxWide add y lineto
+  stroke
+  /y y XS sub def
+  x 10 add y moveto
+    show  % RD
+  x 47 add y moveto
+    Xcenter  % NN
+  x 80 add y moveto
+    Xcenter  % EE
+  x 113 add y moveto
+    Xcenter  % SS
+  x 146 add y moveto
+    Xcenter  % WW
+  x 184 add y moveto
+    Xcenter  % BD
+  x 242 add y moveto
+    Xcenter  % NT
+  /y y XS YboxInc 1 sub mul sub def  
+  } bind def
+
+%%EndSetup
+ 
+% ----- Begin Producing Pages -----
+  
+%%Page: Table1     1  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (1) def
+/BoxLine {
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+%/n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+% BoxLine
+%  /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table2     2  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (2) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table3     3  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (3) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table4     4  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (4) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table5     5  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (5) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table6     6  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (SIX) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table7     7  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (7) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table8     8  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (8) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table9     9  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (NINE) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table10     10  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (10) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table11     11  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (11) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table12     12  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (12) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table13     13  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (13) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table14     14  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (14) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table15     15  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (15) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table16     16  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (16) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table17     17  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (17) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table18     18  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (18) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table19     19  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (19) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table20     20  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (20) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table21     21  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (21) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table22     22  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (22) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table23     23  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (23) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table24     24  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (24) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table25     25  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (25) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+  
+%%Page: Table26     26  
+%%PageBoundingBox: 0 0 400 796  
+%%PageFonts: Helvetica Helvetica-Bold Courier-Bold
+
+%%BeginPageSetup
+/SaveArea save def  % -- establish restorable environment
+%%EndPageSetup
+
+%cut2here ----- Begin Variable Data for This Mat -----
+%/Note       (Note) def
+%/RD         [ (Rd.)  (1.) () (2.) () (3.) () (4.) () (5.) () (6.) () ] def
+%/NS         [ (N-S)  (6)  (6)  (6)  (6)  (6)  (6)  (6) (13)  (6)   (6)   (6)   (6) ] def
+%/EW         [ (E-W) (12) (12) (11) (11) (10) (10) (13)  (9)  (8)   (8)   (7)   (7) ] def
+%/BD         [ (Boards) (17-18) (19-20) (21-22) (23-24)
+%                        (1-2)   (3-4)   (5-6)   (7-8)
+%                        (9-10) (11-12) (13-14) (15-16) ] def
+%/NT         [ Note () () () () () () (ROVER) (ROVER) () () () () ] def
+/NextEast   ( ) def
+/NextSouth  ( ) def
+/NextWest   ( ) def
+/NextNorth  ( ) def
+/TableNumber (26) def
+/BoxLine {
+  NT n get
+  BD n get
+  EW n get
+  NS n get
+  RD n get
+  PairsBoxLine } def
+/Line1AdjNS   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line1AdjEW   -9 def       % -- 3 = E-W directions in line w/arrows
+/Line2Adj    4 def         % -- 
+/Line2N     ( ) def     % -- second line for North
+/Line2S     ( ) def     % -- second line for North
+/Line2E     ( ) def     % -- second line for North
+/Line2W     ( ) def     % -- second line for North
+%ereh2tuc ----- End Variable Data for This Mat -----
+
+FACT dup scale             % -- apply uniform scale factor
+                           % -- Portrait Orientation    
+1 setlinecap               % -- round line caps
+1 setlinejoin              % -- round line joins
+18 18 translate            % -- move origin 0.25 inch
+DrawCutLine
+
+% -- arrow east side (shorten tail)
+gsave
+newpath
+  Xarrow
+  YarrowTail TailShorten sub
+  Xarrow
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+% -- arrow west side (shorten tail)
+gsave
+newpath
+  XEDGE Xarrow sub
+  YarrowTail TailShorten sub
+  XEDGE Xarrow sub
+  YarrowHead 
+  8 20 36 arrow 
+fill
+grestore
+
+TITLE DESC          DoDesc
+VERSION             DoVersion
+PAIRS Title2 Title1 DoTitle
+
+% -- Table Numbers
+% northeast
+XtableN 0 moveto
+TableNumber DoTableNumber
+% northwest
+XEDGE XtableN sub 0 moveto
+TableNumber DoTableNumber
+% southeast
+XtableN YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+% southwest
+XEDGE XtableN sub YEDGE moveto
+180 rotate
+TableNumber DoTableNumber
+-180 rotate
+
+% -- Player Seat Info
+NextNorth NORTH
+NextSouth SOUTH
+NextEast  EAST
+NextWest  WEST
+
+% -- movement box
+ gsave
+ StartBox
+% /n 0 def
+% 0 1 ROUNDS {  % loop through rounds
+%   BoxLine
+%   /n n 1 add def
+%   } for
+ FinishBox
+ grestore
+
+SaveArea restore  % before showpage, per Doc Struc Conv
+
+showpage
+
+%%EOF
