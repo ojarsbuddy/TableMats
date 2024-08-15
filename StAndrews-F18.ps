@@ -38,7 +38,7 @@
 %cut1here ----- Begin Variable Data for All Mats -----
 /VERSION (2024.07.11) def
 /FACT       1.0000 def     % -- uniform scale factor
-/XWIDE      7.75 def        % -- print area width in inches
+/XWIDE      8.00 def        % -- print area width in inches
 /TITLE (BridgeMats Standard Movement Table Mat) def   % -- file name or other title
 /PAIRS CLUB def      % -- number of pairs playing
 /ROUNDS     12 def         % -- number of rounds
@@ -94,7 +94,7 @@
 /XEDGE XWIDE 72 mul def    % -- print area width in pels
 /XCUT XEDGE 38 add def     % -- vertical cut line (X)
 /XCTR XEDGE 2 div def      % -- center of mat in X direction
-/YEDGE      792 def
+/YEDGE      756 def
 /YCTR YEDGE 2 div 84 add def % "center" of mat in Y direction
 /Ydesc YCTR 200 add def    % -- start of description block
 /Ytitle YCTR 58 add def    % -- start of title block
@@ -171,9 +171,9 @@ arrowdict begin
   .1 setlinewidth
   [10] 0 setdash
   XCUT 18 sub -14 moveto
-  0 826 rlineto
+  0 794 rlineto
   stroke
-  -12 826 moveto
+  -12 796 18 sub moveto
   XEDGE 36 add 0 rlineto
   stroke
   [] 0 setdash
